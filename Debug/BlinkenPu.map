@@ -59,11 +59,11 @@ Archive member included because of file (symbol)
 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_copy_data.o)
                               ./shiftpwmlib/CShiftPWM.o (__do_copy_data)
 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_clear_bss.o)
-                              ./src/main.o (__do_clear_bss)
+                              ./shiftpwmlib/ShiftPWM.o (__do_clear_bss)
 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_ctors.o)
-                              ./src/main.o (__do_global_ctors)
+                              ./shiftpwmlib/ShiftPWM.o (__do_global_ctors)
 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_dtors.o)
-                              ./src/main.o (__do_global_dtors)
+                              ./shiftpwmlib/ShiftPWM.o (__do_global_dtors)
 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_udivmodhi4.o)
                               /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_divmodhi4.o) (__udivmodhi4)
 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_tablejump.o)
@@ -166,6 +166,17 @@ Discarded input sections
                 0x00000000       0x48 ./shiftpwmlib/CShiftPWM.o
  .text._ZN9CShiftPWM18PrintInterruptLoadEv
                 0x00000000      0x37e ./shiftpwmlib/CShiftPWM.o
+ .text          0x00000000        0x0 ./shiftpwmlib/ShiftPWM.o
+ .data          0x00000000        0x0 ./shiftpwmlib/ShiftPWM.o
+ .bss           0x00000000        0x0 ./shiftpwmlib/ShiftPWM.o
+ .text.__vector_11
+                0x00000000      0x128 ./shiftpwmlib/ShiftPWM.o
+ .rodata._ZL26digital_pin_to_port_PGM_ct
+                0x00000000       0x14 ./shiftpwmlib/ShiftPWM.o
+ .rodata._ZL21port_to_output_PGM_ct
+                0x00000000        0xa ./shiftpwmlib/ShiftPWM.o
+ .rodata._ZL25digital_pin_to_bit_PGM_ct
+                0x00000000       0x14 ./shiftpwmlib/ShiftPWM.o
  .text          0x00000000        0x0 ./lib/BlinkenFilm.o
  .data          0x00000000        0x0 ./lib/BlinkenFilm.o
  .bss           0x00000000        0x0 ./lib/BlinkenFilm.o
@@ -698,6 +709,7 @@ Address of section .data set to 0x800100
 LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
 LOAD ./src/main.o
 LOAD ./shiftpwmlib/CShiftPWM.o
+LOAD ./shiftpwmlib/ShiftPWM.o
 LOAD ./lib/BlinkenFilm.o
 LOAD ./arduinolib/SPI.o
 LOAD /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a
@@ -796,7 +808,7 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xa60
+.text           0x00000000      0xa26
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -816,164 +828,156 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a
  *(.lowtext*)
                 0x00000068                __ctors_start = .
  *(.ctors)
- .ctors         0x00000068        0x2 ./src/main.o
- .ctors         0x0000006a        0x2 ./lib/BlinkenFilm.o
- .ctors         0x0000006c        0x2 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x0000006e                __ctors_end = .
-                0x0000006e                __dtors_start = .
+ .ctors         0x00000068        0x2 ./shiftpwmlib/ShiftPWM.o
+ .ctors         0x0000006a        0x2 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x0000006c                __ctors_end = .
+                0x0000006c                __dtors_start = .
  *(.dtors)
- .dtors         0x0000006e        0x2 ./src/main.o
- .dtors         0x00000070        0x2 ./lib/BlinkenFilm.o
-                0x00000072                __dtors_end = .
+ .dtors         0x0000006c        0x2 ./shiftpwmlib/ShiftPWM.o
+                0x0000006e                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000072        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
-                0x00000072                __init
+ .init0         0x0000006e        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
+                0x0000006e                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000072        0xc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
+ .init2         0x0000006e        0xc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x0000007e       0x16 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_copy_data.o)
-                0x0000007e                __do_copy_data
- .init4         0x00000094       0x10 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_clear_bss.o)
-                0x00000094                __do_clear_bss
+ .init4         0x0000007a       0x16 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_copy_data.o)
+                0x0000007a                __do_copy_data
+ .init4         0x00000090       0x10 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_clear_bss.o)
+                0x00000090                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
  *(.init6)
- .init6         0x000000a4       0x16 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_ctors.o)
-                0x000000a4                __do_global_ctors
+ .init6         0x000000a0       0x16 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_ctors.o)
+                0x000000a0                __do_global_ctors
  *(.init6)
  *(.init7)
  *(.init7)
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000000ba        0x8 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
+ .init9         0x000000b6        0x8 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
  *(.init9)
  *(.text)
- .text          0x000000c2        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
-                0x000000c2                __vector_20
-                0x000000c2                __vector_1
-                0x000000c2                __vector_24
-                0x000000c2                __vector_12
-                0x000000c2                __bad_interrupt
-                0x000000c2                __vector_6
-                0x000000c2                __vector_3
-                0x000000c2                __vector_23
-                0x000000c2                __vector_25
-                0x000000c2                __vector_13
-                0x000000c2                __vector_17
-                0x000000c2                __vector_7
-                0x000000c2                __vector_5
-                0x000000c2                __vector_4
-                0x000000c2                __vector_9
-                0x000000c2                __vector_2
-                0x000000c2                __vector_21
-                0x000000c2                __vector_15
-                0x000000c2                __vector_8
-                0x000000c2                __vector_14
-                0x000000c2                __vector_10
-                0x000000c2                __vector_22
-                0x000000c6                . = ALIGN (0x2)
+ .text          0x000000be        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
+                0x000000be                __vector_20
+                0x000000be                __vector_1
+                0x000000be                __vector_24
+                0x000000be                __vector_12
+                0x000000be                __bad_interrupt
+                0x000000be                __vector_6
+                0x000000be                __vector_3
+                0x000000be                __vector_23
+                0x000000be                __vector_25
+                0x000000be                __vector_13
+                0x000000be                __vector_17
+                0x000000be                __vector_7
+                0x000000be                __vector_5
+                0x000000be                __vector_4
+                0x000000be                __vector_9
+                0x000000be                __vector_2
+                0x000000be                __vector_21
+                0x000000be                __vector_15
+                0x000000be                __vector_8
+                0x000000be                __vector_14
+                0x000000be                __vector_10
+                0x000000be                __vector_22
+                0x000000c2                . = ALIGN (0x2)
  *(.text.*)
- .text._Z41__static_initialization_and_destruction_0ii.clone.0
-                0x000000c6       0x22 ./src/main.o
  .text.__vector_11
-                0x000000e8       0xb0 ./src/main.o
-                0x000000e8                __vector_11
- .text.setup    0x00000198       0x12 ./src/main.o
-                0x00000198                setup
- .text.main     0x000001aa        0xa ./src/main.o
-                0x000001aa                main
- .text._GLOBAL__I_ShiftPWM
-                0x000001b4        0xa ./src/main.o
- .text._GLOBAL__D_ShiftPWM
-                0x000001be        0xa ./src/main.o
+                0x000000c2       0xb0 ./src/main.o
+                0x000000c2                __vector_11
+ .text.setup    0x00000172       0x12 ./src/main.o
+                0x00000172                setup
+ .text.main     0x00000184        0xa ./src/main.o
+                0x00000184                main
  .text._ZN9CShiftPWMC2Ei
-                0x000001c8       0x16 ./shiftpwmlib/CShiftPWM.o
-                0x000001c8                _ZN9CShiftPWMC1Ei
-                0x000001c8                _ZN9CShiftPWMC2Ei
+                0x0000018e       0x16 ./shiftpwmlib/CShiftPWM.o
+                0x0000018e                _ZN9CShiftPWMC1Ei
+                0x0000018e                _ZN9CShiftPWMC2Ei
  .text._ZN9CShiftPWMD2Ev
-                0x000001de       0x10 ./shiftpwmlib/CShiftPWM.o
-                0x000001de                _ZN9CShiftPWMD1Ev
-                0x000001de                _ZN9CShiftPWMD2Ev
+                0x000001a4       0x10 ./shiftpwmlib/CShiftPWM.o
+                0x000001a4                _ZN9CShiftPWMD1Ev
+                0x000001a4                _ZN9CShiftPWMD2Ev
  .text._Z41__static_initialization_and_destruction_0ii.clone.0
-                0x000001ee       0x22 ./lib/BlinkenFilm.o
- .text._GLOBAL__I_ShiftPWM
-                0x00000210        0xa ./lib/BlinkenFilm.o
- .text._GLOBAL__D_ShiftPWM
-                0x0000021a        0xa ./lib/BlinkenFilm.o
+                0x000001b4       0x22 ./shiftpwmlib/ShiftPWM.o
+ .text._GLOBAL__I___vector_11
+                0x000001d6        0xa ./shiftpwmlib/ShiftPWM.o
+ .text._GLOBAL__D___vector_11
+                0x000001e0        0xa ./shiftpwmlib/ShiftPWM.o
  .text._ZN14HardwareSerial9availableEv
-                0x00000224       0x26 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x00000224                _ZN14HardwareSerial9availableEv
+                0x000001ea       0x26 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x000001ea                _ZN14HardwareSerial9availableEv
  .text._ZN14HardwareSerial4peekEv
-                0x0000024a       0x38 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x0000024a                _ZN14HardwareSerial4peekEv
+                0x00000210       0x38 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x00000210                _ZN14HardwareSerial4peekEv
  .text._ZN14HardwareSerial4readEv
-                0x00000282       0x44 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x00000282                _ZN14HardwareSerial4readEv
+                0x00000248       0x44 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x00000248                _ZN14HardwareSerial4readEv
  .text._ZN14HardwareSerial5flushEv
-                0x000002c6       0x28 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x000002c6                _ZN14HardwareSerial5flushEv
+                0x0000028c       0x28 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x0000028c                _ZN14HardwareSerial5flushEv
  .text._ZN14HardwareSerial5writeEh
-                0x000002ee       0x72 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x000002ee                _ZN14HardwareSerial5writeEh
+                0x000002b4       0x72 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x000002b4                _ZN14HardwareSerial5writeEh
  .text._Z10store_charhP11ring_buffer
-                0x00000360       0x34 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x00000360                _Z10store_charhP11ring_buffer
+                0x00000326       0x34 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x00000326                _Z10store_charhP11ring_buffer
  .text.__vector_18
-                0x00000394       0x50 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x00000394                __vector_18
+                0x0000035a       0x50 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x0000035a                __vector_18
  .text.__vector_19
-                0x000003e4       0x8e /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x000003e4                __vector_19
+                0x000003aa       0x8e /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x000003aa                __vector_19
  .text._ZN14HardwareSerial5beginEm
-                0x00000472       0xfc /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x00000472                _ZN14HardwareSerial5beginEm
+                0x00000438       0xfc /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x00000438                _ZN14HardwareSerial5beginEm
  .text._GLOBAL__I_rx_buffer
-                0x0000056e       0x7a /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x00000534       0x7a /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
  .text._ZN5Print5writeEPKhj
-                0x000005e8       0x54 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(Print.o)
-                0x000005e8                _ZN5Print5writeEPKhj
+                0x000005ae       0x54 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(Print.o)
+                0x000005ae                _ZN5Print5writeEPKhj
  .text.__vector_16
-                0x0000063c       0x90 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
-                0x0000063c                __vector_16
- .text.init     0x000006cc       0x76 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
-                0x000006cc                init
- .text.libgcc   0x00000742       0x26 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_divmodhi4.o)
-                0x00000742                __divmodhi4
-                0x00000742                _div
- .text.libgcc   0x00000768       0x44 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_udivmodsi4.o)
-                0x00000768                __udivmodsi4
- .text.libgcc   0x000007ac       0x28 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_udivmodhi4.o)
-                0x000007ac                __udivmodhi4
- .text.libgcc   0x000007d4        0xc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_tablejump.o)
-                0x000007d4                __tablejump2__
-                0x000007d8                __tablejump__
+                0x00000602       0x90 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
+                0x00000602                __vector_16
+ .text.init     0x00000692       0x76 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
+                0x00000692                init
+ .text.libgcc   0x00000708       0x26 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_divmodhi4.o)
+                0x00000708                __divmodhi4
+                0x00000708                _div
+ .text.libgcc   0x0000072e       0x44 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_udivmodsi4.o)
+                0x0000072e                __udivmodsi4
+ .text.libgcc   0x00000772       0x28 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x00000772                __udivmodhi4
+ .text.libgcc   0x0000079a        0xc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_tablejump.o)
+                0x0000079a                __tablejump2__
+                0x0000079e                __tablejump__
  .text.avr-libc
-                0x000007e0      0x266 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(malloc.o)
-                0x000007e0                malloc
-                0x00000914                free
-                0x00000a46                . = ALIGN (0x2)
+                0x000007a6      0x266 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(malloc.o)
+                0x000007a6                malloc
+                0x000008da                free
+                0x00000a0c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000a46        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_exit.o)
-                0x00000a46                exit
-                0x00000a46                _exit
+ .fini9         0x00000a0c        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_exit.o)
+                0x00000a0c                exit
+                0x00000a0c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
  *(.fini7)
  *(.fini7)
  *(.fini6)
- .fini6         0x00000a46       0x16 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_dtors.o)
-                0x00000a46                __do_global_dtors
+ .fini6         0x00000a0c       0x16 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_dtors.o)
+                0x00000a0c                __do_global_dtors
  *(.fini6)
  *(.fini5)
  *(.fini5)
@@ -986,11 +990,11 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000a5c        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_exit.o)
+ .fini0         0x00000a22        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000a60                _etext = .
+                0x00000a26                _etext = .
 
-.data           0x00800100       0x16 load address 0x00000a60
+.data           0x00800100       0x16 load address 0x00000a26
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x6 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(malloc.o)
@@ -1008,43 +1012,42 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a
                 0x00800116                _edata = .
                 0x00800116                PROVIDE (__data_end, .)
 
-.bss            0x00800116       0xce
+.bss            0x00800116       0xc1
                 0x00800116                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.ShiftPWM  0x00800116        0xd ./src/main.o
+ .bss.ShiftPWM  0x00800116        0xd ./shiftpwmlib/ShiftPWM.o
                 0x00800116                ShiftPWM
- .bss.ShiftPWM  0x00800123        0xd ./lib/BlinkenFilm.o
  .bss.rx_buffer
-                0x00800130       0x44 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x00800130                rx_buffer
+                0x00800123       0x44 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x00800123                rx_buffer
  .bss.tx_buffer
-                0x00800174       0x44 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x00800174                tx_buffer
- .bss.Serial    0x008001b8       0x1f /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                0x008001b8                Serial
+                0x00800167       0x44 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x00800167                tx_buffer
+ .bss.Serial    0x008001ab       0x1f /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+                0x008001ab                Serial
  .bss.timer0_overflow_count
-                0x008001d7        0x4 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
-                0x008001d7                timer0_overflow_count
+                0x008001ca        0x4 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
+                0x008001ca                timer0_overflow_count
  .bss.timer0_millis
-                0x008001db        0x4 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
-                0x008001db                timer0_millis
+                0x008001ce        0x4 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
+                0x008001ce                timer0_millis
  .bss.timer0_fract
-                0x008001df        0x1 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
+                0x008001d2        0x1 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
  *(COMMON)
- COMMON         0x008001e0        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(malloc.o)
-                0x008001e0                __brkval
-                0x008001e2                __flp
-                0x008001e4                PROVIDE (__bss_end, .)
-                0x00000a60                __data_load_start = LOADADDR (.data)
-                0x00000a76                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008001d3        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(malloc.o)
+                0x008001d3                __brkval
+                0x008001d5                __flp
+                0x008001d7                PROVIDE (__bss_end, .)
+                0x00000a26                __data_load_start = LOADADDR (.data)
+                0x00000a3c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008001e4        0x0
-                0x008001e4                PROVIDE (__noinit_start, .)
+.noinit         0x008001d7        0x0
+                0x008001d7                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008001e4                PROVIDE (__noinit_end, .)
-                0x008001e4                _end = .
-                0x008001e4                PROVIDE (__heap_start, .)
+                0x008001d7                PROVIDE (__noinit_end, .)
+                0x008001d7                _end = .
+                0x008001d7                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -1062,111 +1065,113 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x6210
+.stab           0x00000000     0x6438
  *(.stab)
  .stab          0x00000000      0x6cc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
- .stab          0x000006cc      0x7d4 ./src/main.o
-                                0x804 (size before relaxing)
- .stab          0x00000ea0      0x4c8 ./shiftpwmlib/CShiftPWM.o
+ .stab          0x000006cc      0x630 ./src/main.o
+                                0x774 (size before relaxing)
+ .stab          0x00000cfc      0x4c8 ./shiftpwmlib/CShiftPWM.o
                                0x1254 (size before relaxing)
- .stab          0x00001368      0x5e8 ./lib/BlinkenFilm.o
-                                0xcb4 (size before relaxing)
- .stab          0x00001950      0x408 ./arduinolib/SPI.o
+ .stab          0x000011c4      0x57c ./shiftpwmlib/ShiftPWM.o
+                                0x780 (size before relaxing)
+ .stab          0x00001740      0x438 ./lib/BlinkenFilm.o
+                                0xc24 (size before relaxing)
+ .stab          0x00001b78      0x408 ./arduinolib/SPI.o
                                 0x660 (size before relaxing)
- .stab          0x00001d58      0xa80 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
+ .stab          0x00001f80      0xa80 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
                                 0xd2c (size before relaxing)
- .stab          0x000027d8      0x4a4 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(Print.o)
+ .stab          0x00002a00      0x4a4 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(Print.o)
                                0x1110 (size before relaxing)
- .stab          0x00002c7c      0x378 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(WString.o)
+ .stab          0x00002ea4      0x378 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(WString.o)
                                0x23ac (size before relaxing)
- .stab          0x00002ff4      0x1c8 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(new.o)
+ .stab          0x0000321c      0x1c8 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(new.o)
                                 0x300 (size before relaxing)
- .stab          0x000031bc      0x678 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
+ .stab          0x000033e4      0x678 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring.o)
                                 0x8c4 (size before relaxing)
- .stab          0x00003834      0x168 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring_digital.o)
+ .stab          0x00003a5c      0x168 /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(wiring_digital.o)
                                 0x930 (size before relaxing)
- .stab          0x0000399c       0x78 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(addsf3.o)
+ .stab          0x00003bc4       0x78 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(addsf3.o)
                                  0x84 (size before relaxing)
- .stab          0x00003a14      0x4bc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(addsf3x.o)
+ .stab          0x00003c3c      0x4bc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(addsf3x.o)
                                 0x4c8 (size before relaxing)
- .stab          0x00003ed0       0x90 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(cmpsf2.o)
+ .stab          0x000040f8       0x90 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(cmpsf2.o)
                                  0x9c (size before relaxing)
- .stab          0x00003f60       0x48 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(divsf3.o)
+ .stab          0x00004188       0x48 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(divsf3.o)
                                  0x54 (size before relaxing)
- .stab          0x00003fa8      0x510 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(divsf3x.o)
+ .stab          0x000041d0      0x510 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(divsf3x.o)
                                 0x51c (size before relaxing)
- .stab          0x000044b8       0x6c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+ .stab          0x000046e0       0x6c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
                                  0x78 (size before relaxing)
- .stab          0x00004524      0x240 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fixunssfsi.o)
+ .stab          0x0000474c      0x240 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fixunssfsi.o)
                                 0x24c (size before relaxing)
- .stab          0x00004764      0x318 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+ .stab          0x0000498c      0x318 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(floatsisf.o)
                                 0x324 (size before relaxing)
- .stab          0x00004a7c      0x1e0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+ .stab          0x00004ca4      0x1e0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
                                 0x1ec (size before relaxing)
- .stab          0x00004c5c       0x78 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_inf.o)
+ .stab          0x00004e84       0x78 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_inf.o)
                                  0x84 (size before relaxing)
- .stab          0x00004cd4       0x54 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+ .stab          0x00004efc       0x54 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_nan.o)
                                  0x60 (size before relaxing)
- .stab          0x00004d28       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_pscA.o)
+ .stab          0x00004f50       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_pscA.o)
                                  0x90 (size before relaxing)
- .stab          0x00004dac       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_pscB.o)
+ .stab          0x00004fd4       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_pscB.o)
                                  0x90 (size before relaxing)
- .stab          0x00004e30       0xfc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_round.o)
+ .stab          0x00005058       0xfc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_round.o)
                                 0x108 (size before relaxing)
- .stab          0x00004f2c      0x1d4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_split3.o)
+ .stab          0x00005154      0x1d4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_split3.o)
                                 0x1e0 (size before relaxing)
- .stab          0x00005100       0x90 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_zero.o)
+ .stab          0x00005328       0x90 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(fp_zero.o)
                                  0x9c (size before relaxing)
- .stab          0x00005190       0x6c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(gesf2.o)
+ .stab          0x000053b8       0x6c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(gesf2.o)
                                  0x78 (size before relaxing)
- .stab          0x000051fc       0x48 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+ .stab          0x00005424       0x48 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(mulsf3.o)
                                  0x54 (size before relaxing)
- .stab          0x00005244      0x4d4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
+ .stab          0x0000546c      0x4d4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
                                 0x4e0 (size before relaxing)
- .stab          0x00005718      0x1e0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(atol.o)
+ .stab          0x00005940      0x1e0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(atol.o)
                                 0x1ec (size before relaxing)
- .stab          0x000058f8       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(isspace.o)
+ .stab          0x00005b20       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(isspace.o)
                                  0xa8 (size before relaxing)
- .stab          0x00005910       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(tolower.o)
+ .stab          0x00005b38       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(tolower.o)
                                  0xa8 (size before relaxing)
- .stab          0x00005928       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(toupper.o)
+ .stab          0x00005b50       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(toupper.o)
                                  0xa8 (size before relaxing)
- .stab          0x00005940       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(memcpy.o)
+ .stab          0x00005b68       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(memcpy.o)
                                  0x90 (size before relaxing)
- .stab          0x000059c4       0xe4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(memmove.o)
+ .stab          0x00005bec       0xe4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(memmove.o)
                                  0xf0 (size before relaxing)
- .stab          0x00005aa8       0x9c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strchr.o)
+ .stab          0x00005cd0       0x9c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strchr.o)
                                  0xa8 (size before relaxing)
- .stab          0x00005b44       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strcmp.o)
+ .stab          0x00005d6c       0x84 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strcmp.o)
                                  0x90 (size before relaxing)
- .stab          0x00005bc8       0x6c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strcpy.o)
+ .stab          0x00005df0       0x6c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strcpy.o)
                                  0x78 (size before relaxing)
- .stab          0x00005c34       0xc0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strncmp.o)
+ .stab          0x00005e5c       0xc0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strncmp.o)
                                  0xcc (size before relaxing)
- .stab          0x00005cf4       0xcc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strncpy.o)
+ .stab          0x00005f1c       0xcc /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strncpy.o)
                                  0xd8 (size before relaxing)
- .stab          0x00005dc0       0x9c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strrchr.o)
+ .stab          0x00005fe8       0x9c /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strrchr.o)
                                  0xa8 (size before relaxing)
- .stab          0x00005e5c      0x150 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strstr.o)
+ .stab          0x00006084      0x150 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strstr.o)
                                 0x15c (size before relaxing)
- .stab          0x00005fac       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(itoa.o)
+ .stab          0x000061d4       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(itoa.o)
                                 0x1bc (size before relaxing)
- .stab          0x00005fc4       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(ltoa.o)
+ .stab          0x000061ec       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(ltoa.o)
                                 0x2a0 (size before relaxing)
- .stab          0x00005fdc      0x114 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(mulsi10.o)
+ .stab          0x00006204      0x114 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(mulsi10.o)
                                 0x120 (size before relaxing)
- .stab          0x000060f0       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(ultoa.o)
+ .stab          0x00006318       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(ultoa.o)
                                 0x1ec (size before relaxing)
- .stab          0x00006108       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(utoa.o)
+ .stab          0x00006330       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(utoa.o)
                                 0x138 (size before relaxing)
- .stab          0x00006120       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+ .stab          0x00006348       0x18 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
                                  0x6c (size before relaxing)
- .stab          0x00006138       0xd8 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strrev.o)
+ .stab          0x00006360       0xd8 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(strrev.o)
                                  0xe4 (size before relaxing)
 
-.stabstr        0x00000000     0x5ba9
+.stabstr        0x00000000     0x603b
  *(.stabstr)
- .stabstr       0x00000000     0x5ba9 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
+ .stabstr       0x00000000     0x603b /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
 
 .stab.excl
  *(.stab.excl)
@@ -1274,9 +1279,8 @@ BlinkenFilm::~BlinkenFilm()                       ./lib/BlinkenFilm.o
 BlinkenFilm::~BlinkenFilm()                       ./lib/BlinkenFilm.o
 BlinkenFilm::~BlinkenFilm()                       ./lib/BlinkenFilm.o
 CShiftPWM::CShiftPWM(int)                         ./shiftpwmlib/CShiftPWM.o
-                                                  ./lib/BlinkenFilm.o
-                                                  ./src/main.o
 CShiftPWM::CShiftPWM(int)                         ./shiftpwmlib/CShiftPWM.o
+                                                  ./shiftpwmlib/ShiftPWM.o
 CShiftPWM::InitTimer1()                           ./shiftpwmlib/CShiftPWM.o
 CShiftPWM::InitTimer2()                           ./shiftpwmlib/CShiftPWM.o
 CShiftPWM::IsValidPin(int)                        ./shiftpwmlib/CShiftPWM.o
@@ -1301,9 +1305,8 @@ CShiftPWM::SetOne(int, unsigned char)             ./shiftpwmlib/CShiftPWM.o
 CShiftPWM::Start(int, unsigned char)              ./shiftpwmlib/CShiftPWM.o
                                                   ./lib/BlinkenFilm.o
 CShiftPWM::~CShiftPWM()                           ./shiftpwmlib/CShiftPWM.o
+                                                  ./shiftpwmlib/ShiftPWM.o
 CShiftPWM::~CShiftPWM()                           ./shiftpwmlib/CShiftPWM.o
-                                                  ./lib/BlinkenFilm.o
-                                                  ./src/main.o
 HardwareSerial::HardwareSerial(ring_buffer*, ring_buffer*, unsigned char volatile*, unsigned char volatile*, unsigned char volatile*, unsigned char volatile*, unsigned char volatile*, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char) /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
 HardwareSerial::HardwareSerial(ring_buffer*, ring_buffer*, unsigned char volatile*, unsigned char volatile*, unsigned char volatile*, unsigned char volatile*, unsigned char volatile*, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char) /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
 HardwareSerial::available()                       /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
@@ -1362,8 +1365,11 @@ SPIClass::setDataMode(unsigned char)              ./arduinolib/SPI.o
 Serial                                            /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
                                                   ./shiftpwmlib/CShiftPWM.o
                                                   ./src/main.o
-ShiftPWM                                          ./lib/BlinkenFilm.o
+ShiftPWM                                          ./shiftpwmlib/ShiftPWM.o
+                                                  ./lib/BlinkenFilm.o
                                                   ./src/main.o
+ShiftPWM_invertOutputs                            ./shiftpwmlib/ShiftPWM.o
+ShiftPWM_latchPin                                 ./shiftpwmlib/ShiftPWM.o
 String::String(String const&)                     /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(WString.o)
 String::String(String const&)                     /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(WString.o)
 String::String(char const*)                       /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(WString.o)
@@ -1470,22 +1476,20 @@ __do_clear_bss                                    /usr/local/CrossPack-AVR-20120
                                                   /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(WString.o)
                                                   /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
                                                   ./arduinolib/SPI.o
-                                                  ./lib/BlinkenFilm.o
-                                                  ./src/main.o
+                                                  ./shiftpwmlib/ShiftPWM.o
 __do_copy_data                                    /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_copy_data.o)
                                                   /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/libc.a(malloc.o)
                                                   /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(WString.o)
                                                   /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(Print.o)
                                                   /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
                                                   ./lib/BlinkenFilm.o
+                                                  ./shiftpwmlib/ShiftPWM.o
                                                   ./shiftpwmlib/CShiftPWM.o
 __do_global_ctors                                 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_ctors.o)
                                                   /Users/kleinen/Dropbox/Arduino/eclipse-workspace-3/ArduinoCore/328P_16MHz/libArduinoCore.a(HardwareSerial.o)
-                                                  ./lib/BlinkenFilm.o
-                                                  ./src/main.o
+                                                  ./shiftpwmlib/ShiftPWM.o
 __do_global_dtors                                 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_dtors.o)
-                                                  ./lib/BlinkenFilm.o
-                                                  ./src/main.o
+                                                  ./shiftpwmlib/ShiftPWM.o
 __dtors_end                                       /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_dtors.o)
 __dtors_start                                     /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_dtors.o)
 __epilogue_restores__                             /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr5/libgcc.a(_epilogue.o)
@@ -1589,6 +1593,7 @@ __udivmodsi4                                      /usr/local/CrossPack-AVR-20120
 __vector_1                                        /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_10                                       /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_11                                       ./lib/BlinkenFilm.o
+                                                  ./shiftpwmlib/ShiftPWM.o
                                                   ./src/main.o
                                                   /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_12                                       /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm328p.o

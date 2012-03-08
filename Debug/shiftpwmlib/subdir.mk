@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../shiftpwmlib/CShiftPWM.cpp 
+../shiftpwmlib/CShiftPWM.cpp \
+../shiftpwmlib/ShiftPWM.cpp 
 
 OBJS += \
-./shiftpwmlib/CShiftPWM.o 
+./shiftpwmlib/CShiftPWM.o \
+./shiftpwmlib/ShiftPWM.o 
 
 CPP_DEPS += \
-./shiftpwmlib/CShiftPWM.d 
+./shiftpwmlib/CShiftPWM.d \
+./shiftpwmlib/ShiftPWM.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

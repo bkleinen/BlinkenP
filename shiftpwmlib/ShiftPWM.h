@@ -87,7 +87,6 @@ CShiftPWM ShiftPWM(1);
 CShiftPWM ShiftPWM(2);  // if timer1 is in use by servo, use timer 2
 #endif
 
-
 // The macro below uses 3 instructions per pin to generate the byte to transfer with SPI
 // Retreive duty cycle setting from memory (ldd, 2 clockcycles)
 // Compare with the counter (cp, 1 clockcycle) --> result is stored in carry

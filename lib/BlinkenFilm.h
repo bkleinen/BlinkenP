@@ -8,13 +8,6 @@
 #ifndef BLINKENFILM_H_
 #define BLINKENFILM_H_
 
-#include <SPI.h>
-#include <constants.h>
-
-#include "ShiftPWM.h"   // include ShiftPWM.h after setting the pins!
-
-#include <Arduino.h>
-
 
 
 
@@ -25,7 +18,6 @@ public:
 	BlinkenFilm(unsigned char outerLEDs, unsigned char innerLEDs,unsigned char allLEDs); // Konstruktor
 	void step();
     void setup();
-    void original_loop();
 private:
         void  doStep();
         unsigned long nextBlinkAtMillis;
