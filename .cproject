@@ -34,12 +34,18 @@
 								<option id="de.innot.avreclipse.compiler.option.optimize.1478408795" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" value="de.innot.avreclipse.compiler.optimize.size" valueType="enumerated"/>
 								<option id="de.innot.avreclipse.compiler.option.incpath.638749299" name="Include Paths (-I)" superClass="de.innot.avreclipse.compiler.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ArduinoCore/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/arduinolib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/shiftpwmlib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/lib}&quot;"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.optimize.packstruct.50901421" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.compiler.option.optimize.packstruct" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.shortenums.1118763638" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.compiler.option.optimize.shortenums" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.other.601570030" name="Other Optimization Flags" superClass="de.innot.avreclipse.compiler.option.optimize.other" value="-ffunction-sections -fdata-sections" valueType="string"/>
 								<option id="de.innot.avreclipse.compiler.option.language.uchar.1717006500" name="char is unsigned (-funsigned-char)" superClass="de.innot.avreclipse.compiler.option.language.uchar" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.compiler.option.language.ubitfields.677358416" name="bitfields are unsigned (-funsigned-bitfields)" superClass="de.innot.avreclipse.compiler.option.language.ubitfields" value="false" valueType="boolean"/>
+								<option id="de.innot.avreclipse.compiler.option.def.1488995529" superClass="de.innot.avreclipse.compiler.option.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="ARDUINO=22"/>
+								</option>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.58867060" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.debug.1216269955" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.debug">
@@ -47,12 +53,18 @@
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.1383805519" name="Optimization Level" superClass="de.innot.avreclipse.cppcompiler.option.optimize" value="de.innot.avreclipse.cppcompiler.optimize.size" valueType="enumerated"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.incpath.1185904325" name="Include Paths (-I)" superClass="de.innot.avreclipse.cppcompiler.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ArduinoCore/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/arduinolib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/shiftpwmlib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/lib}&quot;"/>
 								</option>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.other.1129863807" name="Other Optimization Flags" superClass="de.innot.avreclipse.cppcompiler.option.optimize.other" value="-ffunction-sections -fdata-sections" valueType="string"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.packstruct.1993680043" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.packstruct" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.shortenums.1852921755" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.shortenums" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.language.uchar.822927110" name="char is unsigned (-funsigned-char)" superClass="de.innot.avreclipse.cppcompiler.option.language.uchar" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.language.ubitfields.1268320008" name="bitfields are unsigned (-funsigned-bitfields)" superClass="de.innot.avreclipse.cppcompiler.option.language.ubitfields" value="false" valueType="boolean"/>
+								<option id="de.innot.avreclipse.cppcompiler.option.def.633385286" superClass="de.innot.avreclipse.cppcompiler.option.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="ARDUINO=22"/>
+								</option>
 								<inputType id="de.innot.avreclipse.cppcompiler.input.1926707820" superClass="de.innot.avreclipse.cppcompiler.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.linker.winavr.app.debug.869377025" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.app.debug"/>
@@ -79,8 +91,11 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="arduinolib"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="lib"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="shiftpwmlib"/>
+						<entry excluding="shiftpwmlib|lib|arduinolib|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
