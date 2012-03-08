@@ -82,6 +82,8 @@ int main(void)
 
 
 void setup()   {
+
+	  Serial.begin(9600);
 	  pinMode(ShiftPWM_latchPin, OUTPUT);
 	  SPI.setBitOrder(LSBFIRST);
 	  // SPI_CLOCK_DIV2 is only a tiny bit faster in sending out the last byte.
@@ -90,13 +92,18 @@ void setup()   {
 	  SPI.begin();
 	  ShiftPWM.SetAmountOfRegisters(numRegisters);
 	  ShiftPWM.Start(pwmFrequency,maxBrightness);
+	  ShiftPWM.SetAll(255);
+	  delay(200);
 	  ShiftPWM.SetAll(0);
-	  Serial.begin(9600);
 }
 
 
-
 void loop()
+{
+	ShiftPWM.OneByOneFast();
+
+}
+void original_loop()
 {
 
 	// Print information about the interrupt frequency, duration and load on your program

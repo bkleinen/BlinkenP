@@ -32,12 +32,13 @@ void BlinkenFilm::setup() {
 
 }
 void BlinkenFilm::step() {
+	/*
 	unsigned long currentMillis = millis();
 	if (currentMillis < nextBlinkAtMillis)
 		return;
 	doStep();
 	nextBlinkAtMillis = nextBlinkAtMillis + delayBetweenSteps;
-
+*/
 }
 void BlinkenFilm::doStep() {
 
@@ -50,12 +51,13 @@ void BlinkenFilm::doStep() {
 		outer = 0;
 	} else
 		nextStep++;
-
+/*
 	for (int output = 0; output < outerLEDs; output++) {
 		ShiftPWM.SetOne(output, outer);
 	}
 	for (int output = outerLEDs; output < allLEDs; output++) {
 		ShiftPWM.SetOne(output, inner);
 	}
+	*/
 }
 
