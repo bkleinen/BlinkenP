@@ -68,11 +68,7 @@ SetGroupOf5(int group, unsigned char v0, unsigned char v1, unsigned char v2, uns
 #define ShiftPWM_H
 
 #include "pins_arduino_compile_time.h" // My own version of pins arduino, which does not define the arrays in program memory
-#if defined(ARDUINO) && ARDUINO >= 100
-  #include <Arduino.h>
-#else
-  #include <WProgram.h>
-#endif
+#include <Arduino.h>
 
 #include "CShiftPWM.h"
 
@@ -86,7 +82,7 @@ extern const bool ShiftPWM_invertOutputs;
 // The compiler cannot treat it as constant and cannot optimize well: it will generate many memory accesses in the interrupt function.
 
 #ifndef _useTimer1 //This is defined in Servo.h
-CShiftPWM ShiftPWM(1);  
+CShiftPWM ShiftPWM(1);
 #else
 CShiftPWM ShiftPWM(2);  // if timer1 is in use by servo, use timer 2
 #endif

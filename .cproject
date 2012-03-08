@@ -43,7 +43,7 @@
 								<option id="de.innot.avreclipse.compiler.option.optimize.other.601570030" name="Other Optimization Flags" superClass="de.innot.avreclipse.compiler.option.optimize.other" value="-ffunction-sections -fdata-sections" valueType="string"/>
 								<option id="de.innot.avreclipse.compiler.option.language.uchar.1717006500" name="char is unsigned (-funsigned-char)" superClass="de.innot.avreclipse.compiler.option.language.uchar" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.compiler.option.language.ubitfields.677358416" name="bitfields are unsigned (-funsigned-bitfields)" superClass="de.innot.avreclipse.compiler.option.language.ubitfields" value="false" valueType="boolean"/>
-								<option id="de.innot.avreclipse.compiler.option.def.1488995529" superClass="de.innot.avreclipse.compiler.option.def" valueType="definedSymbols">
+								<option id="de.innot.avreclipse.compiler.option.def.1488995529" name="Define Syms (-D)" superClass="de.innot.avreclipse.compiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="ARDUINO=22"/>
 								</option>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.58867060" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
@@ -62,7 +62,7 @@
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.shortenums.1852921755" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.shortenums" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.language.uchar.822927110" name="char is unsigned (-funsigned-char)" superClass="de.innot.avreclipse.cppcompiler.option.language.uchar" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.language.ubitfields.1268320008" name="bitfields are unsigned (-funsigned-bitfields)" superClass="de.innot.avreclipse.cppcompiler.option.language.ubitfields" value="false" valueType="boolean"/>
-								<option id="de.innot.avreclipse.cppcompiler.option.def.633385286" superClass="de.innot.avreclipse.cppcompiler.option.def" valueType="definedSymbols">
+								<option id="de.innot.avreclipse.cppcompiler.option.def.633385286" name="Define Syms (-D)" superClass="de.innot.avreclipse.cppcompiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="ARDUINO=22"/>
 								</option>
 								<inputType id="de.innot.avreclipse.cppcompiler.input.1926707820" superClass="de.innot.avreclipse.cppcompiler.input"/>

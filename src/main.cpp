@@ -1,6 +1,5 @@
-#include <Arduino.h>
-#define ARDUINO 1000
 
+#include <BlinkenFilm.h>
 int main(void)
 {
 	init();
@@ -68,69 +67,21 @@ int main(void)
  *
  *****************************************************************************/
 //#include <Servo.h>
-#include <SPI.h>
+//#include <SPI.h>
+//#include <constants.h>
 
+//#include <ShiftPWM.h>   // include ShiftPWM.h after setting the pins!
 
-//Data pin is MOSI (atmega168/328: pin 11. Mega: 51)
-//Clock pin is SCK (atmega168/328: pin 13. Mega: 52)
-const int ShiftPWM_latchPin=8;
-const bool ShiftPWM_invertOutputs = 1; // if invertOutputs is 1, outputs will be active low. Usefull for common anode RGB led's.
-
-#include <ShiftPWM.h>   // include ShiftPWM.h after setting the pins!
-
-
-unsigned char maxBrightness = 255;
-unsigned char pwmFrequency = 75;
-int numRegisters = 6;
 
 void setup()   {
-  pinMode(ShiftPWM_latchPin, OUTPUT);
-  SPI.setBitOrder(LSBFIRST);
-  // SPI_CLOCK_DIV2 is only a tiny bit faster in sending out the last byte.
-  // SPI transfer and calculations overlap for the other bytes.
-  SPI.setClockDivider(SPI_CLOCK_DIV4);
-  SPI.begin();
-
-  Serial.begin(9600);
-
-
-  ShiftPWM.SetAmountOfRegisters(numRegisters);
-  ShiftPWM.Start(pwmFrequency,maxBrightness);
+	  Serial.begin(9600);
 }
 
 
 
 void loop()
 {
-  // Print information about the interrupt frequency, duration and load on your program
-  ShiftPWM.SetAll(0);
-  ShiftPWM.PrintInterruptLoad();
 
-  // Fade in and fade out all outputs one by one fast. Usefull for testing your circuit
-  ShiftPWM.OneByOneFast();
-
-  // Fade in all outputs
-  for(int j=0;j<maxBrightness;j++){
-    ShiftPWM.SetAll(j);
-    delay(20);
-  }
-  // Fade out all outputs
-  for(int j=maxBrightness;j>=0;j--){
-    ShiftPWM.SetAll(j);
-    delay(20);
-  }
-
-  // Fade in and out 2 outputs at a time
-  for(int output=0;output<numRegisters*8-1;output++){
-    ShiftPWM.SetAll(0);
-    for(int brightness=0;brightness<maxBrightness;brightness++){
-      ShiftPWM.SetOne(output+1,brightness);
-      ShiftPWM.SetOne(output,maxBrightness-brightness);
-      delay(1);
-    }
-  }
-  // Fade in and fade out all outputs slowly. Usefull for testing your circuit
-  ShiftPWM.OneByOneSlow();
 }
 
 

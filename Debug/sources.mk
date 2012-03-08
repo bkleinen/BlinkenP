@@ -33,5 +33,6 @@ SIZEDUMMY :=
 SUBDIRS := \
 src \
 shiftpwmlib \
+lib \
 arduinolib \
 

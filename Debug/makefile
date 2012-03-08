@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include src/subdir.mk
 -include shiftpwmlib/subdir.mk
+-include lib/subdir.mk
 -include arduinolib/subdir.mk
 -include subdir.mk
 -include objects.mk
