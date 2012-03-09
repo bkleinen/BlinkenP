@@ -5,6 +5,7 @@
 #include <BlinkenFilm.h>
 
 BlinkenFilm currentFilm;
+char leds[48];
 
 int main(void)
 {
@@ -41,9 +42,8 @@ void doStep(char *leds){
 
 }
 void step(){
-
 	if (currentFilm.due(millis())){
-		char leds[48];
+		Serial.print("due!");
 		doStep(currentFilm.getNextStep(leds));
 	}
 
@@ -51,7 +51,8 @@ void step(){
 
 void loop()
 {
-	delay(2000);
+	//delay(2000);
+	//delay(1000);
 	step();
 	//ShiftPWM.OneByOneFast();
 

@@ -6,23 +6,29 @@
  */
 
 #include "BlinkenFilm.h"
-
+#include "Arduino.h"
 BlinkenFilm::BlinkenFilm() {
-	// TODO Auto-generated constructor stub
+			lastBlinkAtMillis = 0;
+			nextStep = 0;
+			numberOfSteps = 2;
+			interval = 1000;
 
+			outerLEDs = 32;
+			innerLEDs = 15;
+			allLEDs = 48;
 }
 
 BlinkenFilm::~BlinkenFilm() {
-	// TODO Auto-generated destructor stub
+
 }
 
 BlinkenFilm::BlinkenFilm(unsigned char outerLEDs, unsigned char innerLEDs,
 		unsigned char allLEDs) {
 
-	nextBlinkAtMillis = 0;
+	lastBlinkAtMillis = 0;
 	nextStep = 0;
 	numberOfSteps = 2;
-	delayBetweenSteps = 1000;
+	interval = 1000UL;
 
 	outerLEDs = 32;
 	innerLEDs = 15;
@@ -30,9 +36,18 @@ BlinkenFilm::BlinkenFilm(unsigned char outerLEDs, unsigned char innerLEDs,
 
 }
 bool BlinkenFilm::due(unsigned long millisNow){
-	return (millisNow > nextBlinkAtMillis);
+	if (millisNow > lastBlinkAtMillis + interval){
+		Serial.println("---------------");
+		Serial.println(millisNow);
+		Serial.println(lastBlinkAtMillis);
+		lastBlinkAtMillis = millisNow;
+		return true;
+	}
+
+	return false;
 }
 char*  BlinkenFilm::getNextStep(char *leds) {
+	/*
 	if (nextStep == 0){
 		for (int i =0;i<48;i++)
 			leds[i] = 255;
@@ -42,13 +57,17 @@ char*  BlinkenFilm::getNextStep(char *leds) {
 					leds[i] = 0;
 		nextStep = 0;
 	}
-	/*
+	*/
+
+
 	char inner = 0;
 	char outer = 255;
+	interval = 500;
 	if (nextStep >= 1) {
 		inner = 255;
 		outer = 0;
 		nextStep = 0;
+		interval = 1000;
 	} else
 		nextStep++;
 
@@ -58,7 +77,7 @@ char*  BlinkenFilm::getNextStep(char *leds) {
 	for (int output = outerLEDs; output < allLEDs; output++) {
 		leds[output] = inner;
 	}
-	nextBlinkAtMillis = nextBlinkAtMillis + delayBetweenSteps;
-*/
+
+
 	return leds;
 }
