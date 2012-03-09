@@ -3,9 +3,6 @@
 #include "ShiftPWM.h"   // include ShiftPWM.h after setting the pins!
 #include <Arduino.h>
 #include <BlinkenFilm.h>
-#include <Fader.h>
-#include <RandomLight.h>
-#include <LEDRunner.h>
 #define B_INOUT 0
 #define B_RUNNER 1
 #define B_FADE 2
