@@ -22,10 +22,10 @@ char* inout_getNextStep(char *leds) {
 	} else
 		nextStep++;
 
-	for (int output = 0; output < outerLEDs; output++) {
+	for (int output = 0; output < OUTER_LEDS; output++) {
 		leds[output] = outer;
 	}
-	for (int output = outerLEDs; output < allLEDs; output++) {
+	for (int output = OUTER_LEDS; output < ALL_LEDS; output++) {
 		leds[output] = inner;
 	}
 	return leds;
@@ -100,8 +100,16 @@ char* rain_getNextStep(char *leds){
 	return clit_getNextStep(leds);
 }
 char* clit_getNextStep(char *leds) {
+	if (TYPE == FLACHPUSSY){
+		leds[27] = nextStep;
+		leds[45] = nextStep;
+		leds[46] = nextStep;
+		leds[47] = nextStep;
 
-	leds[47] = nextStep;
+	}else{
+		leds[47] = nextStep;
+
+	}
 	switch (nextStep) {
 	case 0:
 		nextStep = 1;

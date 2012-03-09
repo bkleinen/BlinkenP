@@ -1,3 +1,4 @@
+
 #include <SPI.h>
 #include <constants.h>
 #include <ledmacros.h>
@@ -11,7 +12,7 @@
 #define B_RAIN 4
 #define B_CLIT 5
 #define NUMBER_OF_FILMS 6
-#define RANDOM_SWITCH true
+#define RANDOM_SWITCH false
 
 int currentFilmNumber = 0;
 
@@ -23,7 +24,6 @@ char leds[48];
 unsigned long filmInterval = 3000;
 unsigned long lastFilmSwitch = millis();
 unsigned long lastBlinkAtMillis = lastFilmSwitch;
-
 
 int main(void) {
 	init();
@@ -66,6 +66,10 @@ void reset() {
 		filmInterval = 10000;
 		break;
 	case B_CLIT:
+		interval = 5;
+		filmInterval = 8000;
+		oneStep = 1;
+		break;
 	case B_FADE:
 		interval = 10;
 		filmInterval = 8000;
@@ -121,14 +125,14 @@ void switchFilm() {
 	if (currentMillis > (lastFilmSwitch + filmInterval)) {
 		ShiftPWM.SetAll(0);
 		lastFilmSwitch = currentMillis;
-		if (RANDOM_SWITCH){
+		if (RANDOM_SWITCH) {
 			currentFilmNumber = random(NUMBER_OF_FILMS);
-		}else{
-		currentFilmNumber++;
-		if (currentFilmNumber >= NUMBER_OF_FILMS)
-			currentFilmNumber = 0;
+		} else {
+			currentFilmNumber++;
+			if (currentFilmNumber >= NUMBER_OF_FILMS)
+				currentFilmNumber = 0;
 		}
-		//currentFilmNumber = B_RAIN;
+		//currentFilmNumber = B_INOUT;
 		reset();
 		Serial.print("Switched to Film");
 		Serial.println(currentFilmNumber);

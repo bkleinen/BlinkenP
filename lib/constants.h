@@ -8,8 +8,24 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
-#define NUMBER_LEDS = 48;
-#define LED_C = 47;
+#define BIGPUSSY 0
+#define FLACHPUSSY 1
+#define TYPE FLACHPUSSY
+
+#define NUMBER_LEDS 48
+#define ALL_LEDS 48
+#define LED_C 47
+
+#define OUTER_LEDS 32
+#define INNER_LEDS 15
+
+#if TYPE == FLACHPUSSY
+#undef OUTER_LEDS
+#undef INNER_LEDS
+#define OUTER_LEDS 27
+#define INNER_LEDS 18
+#endif
+
 
 //Data pin is MOSI (atmega168/328: pin 11. Mega: 51)
 //Clock pin is SCK (atmega168/328: pin 13. Mega: 52)
@@ -21,9 +37,6 @@ const unsigned char maxBrightness = 255;
 const unsigned char pwmFrequency = 75;
 const int numRegisters = 6;
 
-const unsigned char outerLEDs = 32;
-const unsigned char innerLEDs = 15;
-const unsigned char allLEDs = 48;
 
 
 
