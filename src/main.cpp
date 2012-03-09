@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include <BlinkenFilm.h>
 
+BlinkenFilm currentFilm;
+
 int main(void)
 {
 	init();
@@ -32,13 +34,30 @@ void setup()   {
 	  delay(200);
 	  ShiftPWM.SetAll(0);
 }
+void doStep(char *leds){
+	for (int i=0;i<48;i++){
+		ShiftPWM.SetOne(i,leds[i]);
+	}
 
+}
+void step(){
+
+	if (currentFilm.due(millis())){
+		char leds[48];
+		doStep(currentFilm.getNextStep(leds));
+	}
+
+}
 
 void loop()
 {
-	ShiftPWM.OneByOneFast();
+	delay(2000);
+	step();
+	//ShiftPWM.OneByOneFast();
 
 }
+
+
 void original_loop()
 {
 

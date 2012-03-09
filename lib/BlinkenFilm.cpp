@@ -6,6 +6,7 @@
  */
 
 #include "BlinkenFilm.h"
+
 BlinkenFilm::BlinkenFilm() {
 	// TODO Auto-generated constructor stub
 
@@ -21,43 +22,43 @@ BlinkenFilm::BlinkenFilm(unsigned char outerLEDs, unsigned char innerLEDs,
 	nextBlinkAtMillis = 0;
 	nextStep = 0;
 	numberOfSteps = 2;
-	delayBetweenSteps = 500;
+	delayBetweenSteps = 1000;
 
 	outerLEDs = 32;
 	innerLEDs = 15;
 	allLEDs = 48;
 
 }
-void BlinkenFilm::setup() {
-
+bool BlinkenFilm::due(unsigned long millisNow){
+	return (millisNow > nextBlinkAtMillis);
 }
-void BlinkenFilm::step() {
+char*  BlinkenFilm::getNextStep(char *leds) {
+	if (nextStep == 0){
+		for (int i =0;i<48;i++)
+			leds[i] = 255;
+		nextStep = 1;
+	}else{
+		for (int i =0;i<48;i++)
+					leds[i] = 0;
+		nextStep = 0;
+	}
 	/*
-	unsigned long currentMillis = millis();
-	if (currentMillis < nextBlinkAtMillis)
-		return;
-	doStep();
-	nextBlinkAtMillis = nextBlinkAtMillis + delayBetweenSteps;
-*/
-}
-void BlinkenFilm::doStep() {
-
-	int step = 8;
-	int d = 500;
-	int inner = 0;
-	int outer = 255;
-	if (nextStep == 1) {
+	char inner = 0;
+	char outer = 255;
+	if (nextStep >= 1) {
 		inner = 255;
 		outer = 0;
+		nextStep = 0;
 	} else
 		nextStep++;
-/*
+
 	for (int output = 0; output < outerLEDs; output++) {
-		ShiftPWM.SetOne(output, outer);
+		leds[output] = outer;
 	}
 	for (int output = outerLEDs; output < allLEDs; output++) {
-		ShiftPWM.SetOne(output, inner);
+		leds[output] = inner;
 	}
-	*/
+	nextBlinkAtMillis = nextBlinkAtMillis + delayBetweenSteps;
+*/
+	return leds;
 }
-

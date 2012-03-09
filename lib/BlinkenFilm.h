@@ -16,15 +16,15 @@ public:
 	BlinkenFilm();
 	virtual ~BlinkenFilm();
 	BlinkenFilm(unsigned char outerLEDs, unsigned char innerLEDs,unsigned char allLEDs); // Konstruktor
-	void step();
-    void setup();
+    bool due(unsigned long millisNow);
+    char* getNextStep(char *leds);
 private:
         void  doStep();
         unsigned long nextBlinkAtMillis;
         unsigned long nextStep;
         unsigned long numberOfSteps;
         unsigned long delayBetweenSteps;
-          unsigned char outerLEDs;
+        unsigned char outerLEDs;
   unsigned char innerLEDs;
   unsigned char allLEDs;
 
