@@ -3,14 +3,20 @@
 #include "ShiftPWM.h"   // include ShiftPWM.h after setting the pins!
 #include <Arduino.h>
 #include <BlinkenFilm.h>
+#include <Fader.h>
+#include <RandomLight.h>
 
-int numberOfFilms = 0;
-BlinkenFilm films[4];
-BlinkenFilm currentFilm;
+
 BlinkenFilm blinkenFilm;
 Runner runner;
+Fader fader;
+RandomLight randomLight;
+BlinkenFilm films[] ={blinkenFilm,runner,fader,randomLight};
 
-int currentFilmNumber = 0;
+int numberOfFilms = 4;
+int currentFilmNumber = 3;
+BlinkenFilm currentFilm = films[currentFilmNumber];
+
 char leds[48];
 unsigned long filmInterval = 6000;
 unsigned long lastFilmSwitch = millis();
@@ -26,13 +32,7 @@ int main(void) {
 	return 0;
 }
 
-void initFilms() {
-	numberOfFilms = 2;
-	//films = new BlinkenFilm[numberOfFilms];
-	films[0] = runner;
-	films[1] = blinkenFilm;
 
-}
 void setup() {
 
 	Serial.begin(9600);
@@ -47,7 +47,6 @@ void setup() {
 	ShiftPWM.SetAll(255);
 	delay(200);
 	ShiftPWM.SetAll(0);
-	initFilms();
 }
 
 void doStep(char *leds) {
@@ -65,6 +64,14 @@ void step() {
 		case 1:
 			doStep(blinkenFilm.getNextStep(leds));
 			break;
+
+		case 2:
+			doStep(fader.getNextStep(leds));
+			break;
+
+		case 3:
+			doStep(randomLight.getNextStep(leds));
+			break;
 		}
 	}
 }
@@ -78,6 +85,7 @@ void switchFilm() {
 		if (currentFilmNumber >= numberOfFilms)
 			currentFilmNumber = 0;
 		currentFilm = films[currentFilmNumber];
+		filmInterval = currentFilm.filmDuration;
 		currentFilm.reset();
 	}
 }

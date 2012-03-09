@@ -8,6 +8,8 @@
 #ifndef BLINKENFILM_H_
 #define BLINKENFILM_H_
 
+void setall(char value,char *leds);
+
 class BlinkenFilm {
 public:
 	BlinkenFilm();
@@ -15,8 +17,9 @@ public:
 	bool due(unsigned long millisNow);
 	virtual char* getNextStep(char *leds);
 	void reset();
-	unsigned long nextStep;
+	long nextStep;
 	unsigned long interval;
+	long filmDuration;
 private:
 	void doStep();
 	unsigned long lastBlinkAtMillis;

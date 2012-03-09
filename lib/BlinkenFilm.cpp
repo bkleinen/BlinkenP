@@ -31,7 +31,8 @@ bool BlinkenFilm::due(unsigned long millisNow) {
 void BlinkenFilm::reset(){
 	lastBlinkAtMillis = 0;
 	nextStep = 0;
-	interval = 1000;
+	interval = 500;
+	filmDuration = 10000;
 }
 char* BlinkenFilm::getNextStep(char *leds) {
 	char inner = 0;
@@ -54,13 +55,17 @@ char* BlinkenFilm::getNextStep(char *leds) {
 	return leds;
 }
 
+void setall(char value,char *leds){
+   for(int i=0;i<allLEDs;i++) leds[i] = value;
+
+}
 Runner::Runner() :
 		BlinkenFilm() {
 	interval = 40;
 }
 char* Runner::getNextStep(char *leds) {
-	Serial.println("runner step");
-	Serial.println(nextStep);
+	//Serial.println("runner step");
+	//Serial.println(nextStep);
 	switch (nextStep) {
 	case 52:
 		leds[47] = 0;
@@ -94,6 +99,6 @@ char* Runner::getNextStep(char *leds) {
 	}
 	nextStep = nextStep + 1;
 
-	Serial.println(nextStep);
+	//Serial.println(nextStep);
 	return leds;
 }
