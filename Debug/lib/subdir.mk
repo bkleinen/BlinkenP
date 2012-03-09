@@ -6,18 +6,21 @@
 CPP_SRCS += \
 ../lib/BlinkenFilm.cpp \
 ../lib/Fader.cpp \
+../lib/LEDRunner.cpp \
 ../lib/Rain.cpp \
 ../lib/RandomLight.cpp 
 
 OBJS += \
 ./lib/BlinkenFilm.o \
 ./lib/Fader.o \
+./lib/LEDRunner.o \
 ./lib/Rain.o \
 ./lib/RandomLight.o 
 
 CPP_DEPS += \
 ./lib/BlinkenFilm.d \
 ./lib/Fader.d \
+./lib/LEDRunner.d \
 ./lib/Rain.d \
 ./lib/RandomLight.d 
 

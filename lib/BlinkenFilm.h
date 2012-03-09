@@ -26,10 +26,5 @@ private:
 
 };
 
-class Runner: public BlinkenFilm{
-public:
-	Runner();
-	virtual char* getNextStep(char *leds);
-};
 #endif /* BLINKENFILM_H_ */
 

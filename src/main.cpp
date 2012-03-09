@@ -8,7 +8,7 @@
 
 
 BlinkenFilm blinkenFilm;
-Runner runner;
+LEDRunner runner;
 Fader fader;
 RandomLight randomLight;
 BlinkenFilm films[] ={blinkenFilm,runner,fader,randomLight};
