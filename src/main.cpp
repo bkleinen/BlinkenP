@@ -127,9 +127,9 @@ void switchFilm() {
 		currentFilmNumber++;
 		if (currentFilmNumber >= NUMBER_OF_FILMS)
 			currentFilmNumber = 0;
-		reset();
 		}
-
+		//currentFilmNumber = B_RAIN;
+		reset();
 		Serial.print("Switched to Film");
 		Serial.println(currentFilmNumber);
 	}

@@ -97,7 +97,7 @@ char* randomLight_getNextStep(char *leds) {
 	return leds;
 }
 char* rain_getNextStep(char *leds){
-	return leds;
+	return clit_getNextStep(leds);
 }
 char* clit_getNextStep(char *leds) {
 
