@@ -13,7 +13,8 @@ public:
 	BlinkenFilm();
 	virtual ~BlinkenFilm();
 	bool due(unsigned long millisNow);
-	char* getNextStep(char *leds);
+	virtual char* getNextStep(char *leds);
+	void reset();
 	unsigned long nextStep;
 	unsigned long interval;
 private:
@@ -25,7 +26,7 @@ private:
 class Runner: public BlinkenFilm{
 public:
 	Runner();
-	char* getNextStep(char *leds);
+	virtual char* getNextStep(char *leds);
 };
 #endif /* BLINKENFILM_H_ */
 
