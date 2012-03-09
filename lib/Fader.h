@@ -10,7 +10,7 @@
 
 #include "BlinkenFilm.h"
 
-class Fader : public BlinkenFilm {
+class Fader: public BlinkenFilm {
 public:
 	Fader();
 	virtual ~Fader();

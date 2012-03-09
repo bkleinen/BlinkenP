@@ -9,11 +9,12 @@
 
 
 BlinkenFilm blinkenFilm;
-LEDRunner runner;
-//Fader fader;
+Fader fader;
+//LEDRunner runner;
+//Fader runner2;
 //RandomLight randomLight;
 //BlinkenFilm films[] ={blinkenFilm,runner,fader,randomLight};
-BlinkenFilm films[] ={blinkenFilm,runner};
+BlinkenFilm films[] ={blinkenFilm,fader};
 
 int numberOfFilms = 2;
 int currentFilmNumber = 0;
@@ -67,9 +68,9 @@ void step() {
 			break;
 
 		case 1:
-			doStep(runner.getNextStep(leds));
+			doStep(fader.getNextStep(leds));
 			break;
-			/*
+/*
 		case 2:
 			doStep(fader.getNextStep(leds));
 			break;
@@ -95,13 +96,14 @@ void switchFilm() {
 		currentFilm = films[currentFilmNumber];
 		filmInterval = currentFilm.filmDuration;
 		currentFilm.resetDue = true;
+		Serial.print("Switched to Film");
+		Serial.println(currentFilmNumber);
 	}
 }
 
 void loop() {
 	switchFilm();
 	step();
-	Serial.println("hello.");
 }
 
 void original_loop() {

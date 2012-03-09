@@ -16,11 +16,13 @@ Fader::Fader() {
 Fader::~Fader() {
 }
 void Fader::reset(){
+
 	interval = 10;
-	filmDuration = 30000;
+	filmDuration = 8000;
 	oneStep = 1;
 	resetDue = false;
 	Serial.println("Fader reset");
+
 
 }
 char* Fader::getNextStep(char *leds){
