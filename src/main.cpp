@@ -4,8 +4,11 @@
 #include <Arduino.h>
 #include <BlinkenFilm.h>
 
-BlinkenFilm currentFilm;
+BlinkenFilm blinkenFilm;
+Runner runnerFilm;
+Runner currentFilm;
 char leds[48];
+unsigned long filmInterval = 30000;
 
 int main(void)
 {
@@ -43,19 +46,17 @@ void doStep(char *leds){
 }
 void step(){
 	if (currentFilm.due(millis())){
-		Serial.print("due!");
 		doStep(currentFilm.getNextStep(leds));
 	}
-
+}
+void switchFilm(){
+	//currentFilm = runnerFilm;
 }
 
 void loop()
 {
-	//delay(2000);
-	//delay(1000);
 	step();
-	//ShiftPWM.OneByOneFast();
-
+	switchFilm();
 }
 
 

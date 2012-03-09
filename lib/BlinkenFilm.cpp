@@ -6,60 +6,30 @@
  */
 
 #include "BlinkenFilm.h"
+#include <constants.h>
 #include "Arduino.h"
 BlinkenFilm::BlinkenFilm() {
-			lastBlinkAtMillis = 0;
-			nextStep = 0;
-			numberOfSteps = 2;
-			interval = 1000;
-
-			outerLEDs = 32;
-			innerLEDs = 15;
-			allLEDs = 48;
+	lastBlinkAtMillis = 0;
+	nextStep = 0;
+	interval = 1000;
 }
 
 BlinkenFilm::~BlinkenFilm() {
 
 }
 
-BlinkenFilm::BlinkenFilm(unsigned char outerLEDs, unsigned char innerLEDs,
-		unsigned char allLEDs) {
-
-	lastBlinkAtMillis = 0;
-	nextStep = 0;
-	numberOfSteps = 2;
-	interval = 1000UL;
-
-	outerLEDs = 32;
-	innerLEDs = 15;
-	allLEDs = 48;
-
-}
-bool BlinkenFilm::due(unsigned long millisNow){
-	if (millisNow > lastBlinkAtMillis + interval){
-		Serial.println("---------------");
-		Serial.println(millisNow);
-		Serial.println(lastBlinkAtMillis);
+bool BlinkenFilm::due(unsigned long millisNow) {
+	if (millisNow > lastBlinkAtMillis + interval) {
 		lastBlinkAtMillis = millisNow;
+		Serial.println("due");
+		Serial.println(lastBlinkAtMillis);
+		Serial.println(interval);
 		return true;
 	}
 
 	return false;
 }
-char*  BlinkenFilm::getNextStep(char *leds) {
-	/*
-	if (nextStep == 0){
-		for (int i =0;i<48;i++)
-			leds[i] = 255;
-		nextStep = 1;
-	}else{
-		for (int i =0;i<48;i++)
-					leds[i] = 0;
-		nextStep = 0;
-	}
-	*/
-
-
+char* BlinkenFilm::getNextStep(char *leds) {
 	char inner = 0;
 	char outer = 255;
 	interval = 500;
@@ -67,7 +37,7 @@ char*  BlinkenFilm::getNextStep(char *leds) {
 		inner = 255;
 		outer = 0;
 		nextStep = 0;
-		interval = 1000;
+		interval = 300;
 	} else
 		nextStep++;
 
@@ -77,7 +47,49 @@ char*  BlinkenFilm::getNextStep(char *leds) {
 	for (int output = outerLEDs; output < allLEDs; output++) {
 		leds[output] = inner;
 	}
+	return leds;
+}
 
+Runner::Runner() :
+		BlinkenFilm() {
+	interval = 40;
+}
+char* Runner::getNextStep(char *leds) {
+	Serial.println("runner step");
+	Serial.println(nextStep);
+	switch (nextStep) {
+	case 52:
+		leds[47] = 0;
+		nextStep=0;
+		break;
+	case 51:
+		leds[47] = 30;
+		break;
+	case 50:
+		leds[47] = 60;
+		break;
+	case 49:
+		leds[47] = 80;
+		break;
+	case 48:
+		leds[47] = 100;
+		leds[46]=0;
+		break;
+	case 0:
+		leds[0]=255;
+		break;
+	case 1:
+		leds[1]=255;
+		leds[0]=50;
+		break;
+	default:
+		leds[nextStep] = 255;
+		leds[nextStep - 1] = 50;
+		leds[nextStep -2] = 0;
+		break;
+	}
+	nextStep = nextStep + 1;
 
+	Serial.println(nextStep);
 	return leds;
 }

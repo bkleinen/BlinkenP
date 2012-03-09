@@ -12,21 +12,20 @@ class BlinkenFilm {
 public:
 	BlinkenFilm();
 	virtual ~BlinkenFilm();
-	BlinkenFilm(unsigned char outerLEDs, unsigned char innerLEDs,
-			unsigned char allLEDs); // Konstruktor
 	bool due(unsigned long millisNow);
 	char* getNextStep(char *leds);
+	unsigned long nextStep;
+	unsigned long interval;
 private:
 	void doStep();
 	unsigned long lastBlinkAtMillis;
-	unsigned long nextStep;
-	unsigned long numberOfSteps;
-	unsigned long interval;
-	unsigned char outerLEDs;
-	unsigned char innerLEDs;
-	unsigned char allLEDs;
 
 };
 
+class Runner: public BlinkenFilm{
+public:
+	Runner();
+	char* getNextStep(char *leds);
+};
 #endif /* BLINKENFILM_H_ */
 
