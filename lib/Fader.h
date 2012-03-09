@@ -14,7 +14,8 @@ class Fader : public BlinkenFilm {
 public:
 	Fader();
 	virtual ~Fader();
-	virtual char* getNextStep(char *leds);
+	char* getNextStep(char *leds);
+	void reset();
 private:
 	int oneStep;
 

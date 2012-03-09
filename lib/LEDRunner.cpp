@@ -7,16 +7,22 @@
 
 #include "LEDRunner.h"
 
-LEDRunner::LEDRunner() {
-	interval = 40;
-	filmDuration = 10000;
+#include <Arduino.h>
 
+LEDRunner::LEDRunner() {
+	reset();
 }
 
 LEDRunner::~LEDRunner() {
 }
-
+void LEDRunner::reset(){
+	interval = 10;
+	filmDuration = 10000;
+	resetDue = false;
+	Serial.println("LEDRunner reset");
+}
 char* LEDRunner::getNextStep(char *leds) {
+	if (resetDue) reset();
 	//Serial.println("runner step");
 	//Serial.println(nextStep);
 	switch (nextStep) {

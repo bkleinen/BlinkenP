@@ -10,15 +10,19 @@
 #include <Arduino.h>
 
 RandomLight::RandomLight() {
-	interval = 100;
-
 
 }
 
 RandomLight::~RandomLight() {
 }
 
+void RandomLight::reset(){
+	interval = 100;
+	resetDue = false;
+	Serial.println("RandomLight reset");
+}
 char* RandomLight::getNextStep(char *leds){
+	if (resetDue) reset();
 	for(int i=0;i<ALL_LEDS;i++){
 		leds[i] = random(256);
 	}

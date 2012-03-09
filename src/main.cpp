@@ -5,16 +5,18 @@
 #include <BlinkenFilm.h>
 #include <Fader.h>
 #include <RandomLight.h>
+#include <LEDRunner.h>
 
 
 BlinkenFilm blinkenFilm;
-LEDRunner runner;
-Fader fader;
-RandomLight randomLight;
-BlinkenFilm films[] ={blinkenFilm,runner,fader,randomLight};
+//LEDRunner runner;
+//Fader fader;
+//RandomLight randomLight;
+//BlinkenFilm films[] ={blinkenFilm,runner,fader,randomLight};
+BlinkenFilm films[] ={blinkenFilm};
 
-int numberOfFilms = 4;
-int currentFilmNumber = 3;
+int numberOfFilms = 1;
+int currentFilmNumber = 0;
 BlinkenFilm currentFilm = films[currentFilmNumber];
 
 char leds[48];
@@ -36,6 +38,7 @@ int main(void) {
 void setup() {
 
 	Serial.begin(9600);
+	Serial.println("Hello BlinkenPu");
 	pinMode(ShiftPWM_latchPin, OUTPUT);
 	SPI.setBitOrder(LSBFIRST);
 	// SPI_CLOCK_DIV2 is only a tiny bit faster in sending out the last byte.
@@ -56,15 +59,16 @@ void doStep(char *leds) {
 
 }
 void step() {
+
 	if (films[currentFilmNumber].due(millis())) {
 		switch (currentFilmNumber) {
 		case 0:
-			doStep(runner.getNextStep(leds));
-			break;
-		case 1:
 			doStep(blinkenFilm.getNextStep(leds));
 			break;
-
+			/*
+		case 1:
+			doStep(runner.getNextStep(leds));
+			break;
 		case 2:
 			doStep(fader.getNextStep(leds));
 			break;
@@ -72,27 +76,32 @@ void step() {
 		case 3:
 			doStep(randomLight.getNextStep(leds));
 			break;
+			*/
 		}
 	}
+
 }
 
 
 void switchFilm() {
 	unsigned long currentMillis = millis();
 	if (currentMillis > (lastFilmSwitch + filmInterval)) {
+		ShiftPWM.SetAll(0);
+
 		lastFilmSwitch = currentMillis;
 		currentFilmNumber++;
 		if (currentFilmNumber >= numberOfFilms)
 			currentFilmNumber = 0;
 		currentFilm = films[currentFilmNumber];
 		filmInterval = currentFilm.filmDuration;
-		currentFilm.reset();
+		//currentFilm.resetDue = true;
 	}
 }
 
 void loop() {
-	step();
 	switchFilm();
+	step();
+	Serial.println("hello.");
 }
 
 void original_loop() {

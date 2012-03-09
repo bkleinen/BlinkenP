@@ -33,8 +33,12 @@ void BlinkenFilm::reset(){
 	nextStep = 0;
 	interval = 500;
 	filmDuration = 10000;
+	resetDue = false;
+	Serial.println("BlinkenFilm reset");
+
 }
 char* BlinkenFilm::getNextStep(char *leds) {
+	if (resetDue) reset();
 	char inner = 0;
 	char outer = 255;
 	interval = 500;

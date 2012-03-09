@@ -14,7 +14,8 @@ class LEDRunner: public BlinkenFilm {
 public:
 	LEDRunner();
 	virtual ~LEDRunner();
-	virtual char* getNextStep(char *leds);
+	char* getNextStep(char *leds);
+	void reset();
 };
 
 #endif /* LEDRUNNER_H_ */

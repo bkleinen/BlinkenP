@@ -15,11 +15,12 @@ public:
 	BlinkenFilm();
 	virtual ~BlinkenFilm();
 	bool due(unsigned long millisNow);
-	virtual char* getNextStep(char *leds);
+	char* getNextStep(char *leds);
 	void reset();
 	long nextStep;
 	unsigned long interval;
 	long filmDuration;
+	bool resetDue;
 private:
 	void doStep();
 	unsigned long lastBlinkAtMillis;

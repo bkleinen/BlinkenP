@@ -15,6 +15,7 @@ public:
 	RandomLight();
 	virtual ~RandomLight();
 	char* getNextStep(char *leds);
+	void reset();
 };
 
 #endif /* RANDOM_H_ */

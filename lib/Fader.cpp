@@ -7,17 +7,24 @@
 
 #include "Fader.h"
 #include <ledmacros.h>
+#include <Arduino.h>
 
 Fader::Fader() {
-	interval = 10;
-	filmDuration = 30000;
-	oneStep = 1;
+	reset();
 }
 
 Fader::~Fader() {
-	// TODO Auto-generated destructor stub
+}
+void Fader::reset(){
+	interval = 10;
+	filmDuration = 30000;
+	oneStep = 1;
+	resetDue = false;
+	Serial.println("Fader reset");
+
 }
 char* Fader::getNextStep(char *leds){
+	if (resetDue) reset();
 	setAll(nextStep);
 	switch (nextStep) {
 	case 0:
