@@ -9,6 +9,7 @@
 #define CONSTANTS_H_
 
 #define NUMBER_LEDS = 48;
+#define LED_C = 47;
 
 //Data pin is MOSI (atmega168/328: pin 11. Mega: 51)
 //Clock pin is SCK (atmega168/328: pin 13. Mega: 52)

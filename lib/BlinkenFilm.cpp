@@ -96,3 +96,24 @@ char* randomLight_getNextStep(char *leds) {
 	}
 	return leds;
 }
+char* rain_getNextStep(char *leds){
+	return leds;
+}
+char* clit_getNextStep(char *leds) {
+
+	leds[47] = nextStep;
+	switch (nextStep) {
+	case 0:
+		nextStep = 1;
+		oneStep = 1;
+		break;
+	case 255:
+		nextStep = 254;
+		oneStep = -1;
+		break;
+	default:
+		nextStep = nextStep + oneStep;
+		break;
+	}
+	return leds;
+}

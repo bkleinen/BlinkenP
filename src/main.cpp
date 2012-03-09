@@ -1,5 +1,6 @@
 #include <SPI.h>
 #include <constants.h>
+#include <ledmacros.h>
 #include "ShiftPWM.h"   // include ShiftPWM.h after setting the pins!
 #include <Arduino.h>
 #include <BlinkenFilm.h>
@@ -7,7 +8,10 @@
 #define B_RUNNER 1
 #define B_FADE 2
 #define B_RANDOM 3
-#define NUMBER_OF_FILMS 4
+#define B_RAIN 4
+#define B_CLIT 5
+#define NUMBER_OF_FILMS 6
+#define RANDOM_SWITCH true
 
 int currentFilmNumber = 0;
 
@@ -49,17 +53,19 @@ void setup() {
 	ShiftPWM.SetAll(0);
 }
 void reset() {
+	setAll(0);
+	ShiftPWM.SetAll(0);
 	switch (currentFilmNumber) {
 	case B_INOUT:
 		nextStep = 0;
-		interval = 200 + (random(3) * 100);
+		interval = 50 + (random(3) * 100);
 		filmInterval = 5000;
 		break;
 	case B_RUNNER:
 		interval = 40;
 		filmInterval = 10000;
-
 		break;
+	case B_CLIT:
 	case B_FADE:
 		interval = 10;
 		filmInterval = 8000;
@@ -69,7 +75,11 @@ void reset() {
 		interval = 100;
 		filmInterval = 5000;
 		break;
+
+	case B_RAIN:
+		break;
 	}
+
 }
 void doStep(char *leds) {
 	for (int i = 0; i < 48; i++) {
@@ -95,7 +105,12 @@ void step() {
 		case B_RANDOM:
 			doStep(randomLight_getNextStep(leds));
 			break;
-
+		case B_RAIN:
+			doStep(rain_getNextStep(leds));
+			break;
+		case B_CLIT:
+			doStep(clit_getNextStep(leds));
+			break;
 		}
 	}
 
@@ -106,10 +121,14 @@ void switchFilm() {
 	if (currentMillis > (lastFilmSwitch + filmInterval)) {
 		ShiftPWM.SetAll(0);
 		lastFilmSwitch = currentMillis;
+		if (RANDOM_SWITCH){
+			currentFilmNumber = random(NUMBER_OF_FILMS);
+		}else{
 		currentFilmNumber++;
 		if (currentFilmNumber >= NUMBER_OF_FILMS)
 			currentFilmNumber = 0;
 		reset();
+		}
 
 		Serial.print("Switched to Film");
 		Serial.println(currentFilmNumber);

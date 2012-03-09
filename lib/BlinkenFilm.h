@@ -12,6 +12,8 @@
  char* fader_getNextStep(char *leds);
  char* runner_getNextStep(char *leds);
  char* randomLight_getNextStep(char *leds);
+ char* rain_getNextStep(char *leds);
+ char* clit_getNextStep(char *leds);
 
 
 
