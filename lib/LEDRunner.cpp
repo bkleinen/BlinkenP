@@ -16,13 +16,14 @@ LEDRunner::LEDRunner() {
 LEDRunner::~LEDRunner() {
 }
 void LEDRunner::reset(){
-	interval = 10;
+	interval = 40;
 	filmDuration = 10000;
 	resetDue = false;
 	Serial.println("LEDRunner reset");
 }
 char* LEDRunner::getNextStep(char *leds) {
 	if (resetDue) reset();
+	if (interval >= 20) interval--;
 	//Serial.println("runner step");
 	//Serial.println(nextStep);
 	switch (nextStep) {

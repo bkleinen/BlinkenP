@@ -9,18 +9,18 @@
 
 
 BlinkenFilm blinkenFilm;
-//LEDRunner runner;
+LEDRunner runner;
 //Fader fader;
 //RandomLight randomLight;
 //BlinkenFilm films[] ={blinkenFilm,runner,fader,randomLight};
-BlinkenFilm films[] ={blinkenFilm};
+BlinkenFilm films[] ={blinkenFilm,runner};
 
-int numberOfFilms = 1;
+int numberOfFilms = 2;
 int currentFilmNumber = 0;
 BlinkenFilm currentFilm = films[currentFilmNumber];
 
 char leds[48];
-unsigned long filmInterval = 6000;
+unsigned long filmInterval = 3000;
 unsigned long lastFilmSwitch = millis();
 
 int main(void) {
@@ -65,10 +65,11 @@ void step() {
 		case 0:
 			doStep(blinkenFilm.getNextStep(leds));
 			break;
-			/*
+
 		case 1:
 			doStep(runner.getNextStep(leds));
 			break;
+			/*
 		case 2:
 			doStep(fader.getNextStep(leds));
 			break;
@@ -87,14 +88,13 @@ void switchFilm() {
 	unsigned long currentMillis = millis();
 	if (currentMillis > (lastFilmSwitch + filmInterval)) {
 		ShiftPWM.SetAll(0);
-
 		lastFilmSwitch = currentMillis;
 		currentFilmNumber++;
 		if (currentFilmNumber >= numberOfFilms)
 			currentFilmNumber = 0;
 		currentFilm = films[currentFilmNumber];
 		filmInterval = currentFilm.filmDuration;
-		//currentFilm.resetDue = true;
+		currentFilm.resetDue = true;
 	}
 }
 

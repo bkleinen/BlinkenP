@@ -31,8 +31,8 @@ bool BlinkenFilm::due(unsigned long millisNow) {
 void BlinkenFilm::reset(){
 	lastBlinkAtMillis = 0;
 	nextStep = 0;
-	interval = 500;
-	filmDuration = 10000;
+	interval = 200+(random(3)*100);
+	filmDuration = 5000;
 	resetDue = false;
 	Serial.println("BlinkenFilm reset");
 
