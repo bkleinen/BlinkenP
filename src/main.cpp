@@ -6,23 +6,23 @@
 #include <Fader.h>
 #include <RandomLight.h>
 #include <LEDRunner.h>
+#define B_INOUT 0
+#define B_RUNNER 1
+#define B_FADE 2
+#define B_RANDOM 3
+#define NUMBER_OF_FILMS 4
 
-
-BlinkenFilm blinkenFilm;
-Fader fader;
-//LEDRunner runner;
-//Fader runner2;
-//RandomLight randomLight;
-//BlinkenFilm films[] ={blinkenFilm,runner,fader,randomLight};
-BlinkenFilm films[] ={blinkenFilm,fader};
-
-int numberOfFilms = 2;
 int currentFilmNumber = 0;
-BlinkenFilm currentFilm = films[currentFilmNumber];
+
+long interval = 500;
+long nextStep = 0;
+long oneStep = 1;
 
 char leds[48];
 unsigned long filmInterval = 3000;
 unsigned long lastFilmSwitch = millis();
+unsigned long lastBlinkAtMillis = lastFilmSwitch;
+
 
 int main(void) {
 	init();
@@ -34,7 +34,6 @@ int main(void) {
 
 	return 0;
 }
-
 
 void setup() {
 
@@ -52,7 +51,29 @@ void setup() {
 	delay(200);
 	ShiftPWM.SetAll(0);
 }
+void reset() {
+	switch (currentFilmNumber) {
+	case B_INOUT:
+		nextStep = 0;
+		interval = 200 + (random(3) * 100);
+		filmInterval = 5000;
+		break;
+	case B_RUNNER:
+		interval = 40;
+		filmInterval = 10000;
 
+		break;
+	case B_FADE:
+		interval = 10;
+		filmInterval = 8000;
+		oneStep = 1;
+		break;
+	case B_RANDOM:
+		interval = 100;
+		filmInterval = 5000;
+		break;
+	}
+}
 void doStep(char *leds) {
 	for (int i = 0; i < 48; i++) {
 		ShiftPWM.SetOne(i, leds[i]);
@@ -60,30 +81,28 @@ void doStep(char *leds) {
 
 }
 void step() {
-
-	if (films[currentFilmNumber].due(millis())) {
+	unsigned long millisNow = millis();
+	if (millisNow > lastBlinkAtMillis + interval) {
+		lastBlinkAtMillis = millisNow;
 		switch (currentFilmNumber) {
-		case 0:
-			doStep(blinkenFilm.getNextStep(leds));
+
+		case B_INOUT:
+			doStep(inout_getNextStep(leds));
+			break;
+		case B_RUNNER:
+			doStep(runner_getNextStep(leds));
+			break;
+		case B_FADE:
+			doStep(fader_getNextStep(leds));
+			break;
+		case B_RANDOM:
+			doStep(randomLight_getNextStep(leds));
 			break;
 
-		case 1:
-			doStep(fader.getNextStep(leds));
-			break;
-/*
-		case 2:
-			doStep(fader.getNextStep(leds));
-			break;
-
-		case 3:
-			doStep(randomLight.getNextStep(leds));
-			break;
-			*/
 		}
 	}
 
 }
-
 
 void switchFilm() {
 	unsigned long currentMillis = millis();
@@ -91,11 +110,10 @@ void switchFilm() {
 		ShiftPWM.SetAll(0);
 		lastFilmSwitch = currentMillis;
 		currentFilmNumber++;
-		if (currentFilmNumber >= numberOfFilms)
+		if (currentFilmNumber >= NUMBER_OF_FILMS)
 			currentFilmNumber = 0;
-		currentFilm = films[currentFilmNumber];
-		filmInterval = currentFilm.filmDuration;
-		currentFilm.resetDue = true;
+		reset();
+
 		Serial.print("Switched to Film");
 		Serial.println(currentFilmNumber);
 	}
