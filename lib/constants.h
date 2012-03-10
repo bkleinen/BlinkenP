@@ -10,7 +10,7 @@
 
 #define BIGPUSSY 0
 #define FLACHPUSSY 1
-#define TYPE FLACHPUSSY
+#define TYPE BIGPUSSY
 
 #define NUMBER_LEDS 48
 #define ALL_LEDS 48

@@ -89,6 +89,55 @@ char* runner_getNextStep(char *leds) {
 	//Serial.println(nextStep);
 	return leds;
 }
+char* runner_2_getNextStep(char *leds) {
+
+	//Serial.println("runner step");
+	//Serial.println(nextStep);
+	/*
+	 switch (nextStep) {
+
+	case 52:
+		leds[47] = 0;
+		nextStep = 0;
+		break;
+	case 51:
+		leds[47] = 30;
+		break;
+	case 50:
+		leds[47] = 60;
+		break;
+	case 49:
+		leds[47] = 80;
+		break;
+	case 48:
+		leds[47] = 100;
+		leds[46] = 0;
+		break;
+	case 0:
+		leds[0] = 255;
+		break;
+	case 1:
+		leds[1] = 255;
+		leds[0] = 50;
+		break;
+
+	default:
+		leds[nextStep] = 255;
+		leds[nextStep+16] = 255;
+		leds[nextStep - 1] = 50;
+		leds[nextStep - 2] = 0;
+		break;
+	}
+	*/
+	if (nextStep > 0)
+		leds[nextStep-1]=0;
+	leds[nextStep] = 255;
+	leds[nextStep+15]=0;
+	leds[nextStep+16]=255;
+	nextStep = nextStep + 1;
+	if (nextStep ==32) nextStep = 0;
+	return leds;
+}
 
 char* randomLight_getNextStep(char *leds) {
 	for (int i = 0; i < ALL_LEDS; i++) {

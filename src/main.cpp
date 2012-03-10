@@ -7,11 +7,12 @@
 #include <BlinkenFilm.h>
 #define B_INOUT 0
 #define B_RUNNER 1
-#define B_FADE 2
-#define B_RANDOM 3
-#define B_RAIN 4
-#define B_CLIT 5
-#define NUMBER_OF_FILMS 6
+#define B_RUNNER_2 2
+#define B_FADE 3
+#define B_RANDOM 4
+#define B_RAIN 5
+#define B_CLIT 6
+#define NUMBER_OF_FILMS 7
 #define RANDOM_SWITCH false
 
 int currentFilmNumber = 0;
@@ -65,6 +66,10 @@ void reset() {
 		interval = 40;
 		filmInterval = 10000;
 		break;
+	case B_RUNNER_2:
+		interval = 40;
+		filmInterval = 10000;
+		break;
 	case B_CLIT:
 		interval = 5;
 		filmInterval = 8000;
@@ -103,6 +108,9 @@ void step() {
 		case B_RUNNER:
 			doStep(runner_getNextStep(leds));
 			break;
+		case B_RUNNER_2:
+			doStep(runner_2_getNextStep(leds));
+			break;
 		case B_FADE:
 			doStep(fader_getNextStep(leds));
 			break;
@@ -132,7 +140,7 @@ void switchFilm() {
 			if (currentFilmNumber >= NUMBER_OF_FILMS)
 				currentFilmNumber = 0;
 		}
-		//currentFilmNumber = B_INOUT;
+		//currentFilmNumber = B_RUNNER_2;
 		reset();
 		Serial.print("Switched to Film");
 		Serial.println(currentFilmNumber);

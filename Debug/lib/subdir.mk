@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../lib/BlinkenFilm.cpp 
+../lib/BlinkenFilm.cpp \
+../lib/Lauflicht.cpp 
 
 OBJS += \
-./lib/BlinkenFilm.o 
+./lib/BlinkenFilm.o \
+./lib/Lauflicht.o 
 
 CPP_DEPS += \
-./lib/BlinkenFilm.d 
+./lib/BlinkenFilm.d \
+./lib/Lauflicht.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
