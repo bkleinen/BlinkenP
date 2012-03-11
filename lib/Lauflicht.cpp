@@ -7,13 +7,16 @@
 
 #include "Lauflicht.h"
 
+Lauflicht::Lauflicht() {
+	this->position = 0;
+	this->direction = -1;
+}
 Lauflicht::Lauflicht(char position,char direction) {
 	this->position = position;
 	this->direction = direction;
 }
 
 Lauflicht::~Lauflicht() {
-	// TODO Auto-generated destructor stub
 }
 
 

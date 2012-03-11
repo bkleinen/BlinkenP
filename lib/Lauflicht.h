@@ -10,6 +10,7 @@
 
 class Lauflicht {
 public:
+	Lauflicht();
 	Lauflicht(char position,char direction);
 	virtual ~Lauflicht();
 	void advance();

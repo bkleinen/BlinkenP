@@ -5,6 +5,7 @@
 #include "ShiftPWM.h"   // include ShiftPWM.h after setting the pins!
 #include <Arduino.h>
 #include <BlinkenFilm.h>
+#include <Lauflicht.h>
 #define B_INOUT 0
 #define B_RUNNER 1
 #define B_RUNNER_2 2
@@ -20,6 +21,9 @@ int currentFilmNumber = 0;
 long interval = 500;
 long nextStep = 0;
 long oneStep = 1;
+
+Lauflicht lauflichter[MAX_LAUFLICHTER];
+char lauflichtNumber = 1;
 
 char leds[48];
 unsigned long filmInterval = 3000;
@@ -67,8 +71,9 @@ void reset() {
 		filmInterval = 10000;
 		break;
 	case B_RUNNER_2:
-		interval = 40;
-		filmInterval = 10000;
+		interval = 60;
+		filmInterval = 50000;
+		lauflichtReset();
 		break;
 	case B_CLIT:
 		interval = 5;

@@ -16,7 +16,8 @@
  char* rain_getNextStep(char *leds);
  char* clit_getNextStep(char *leds);
 
-
+ void lauflichtReset();
+ void addLauflicht();
 
 
 #endif /* BLINKENFILM_H_ */
